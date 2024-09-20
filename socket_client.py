@@ -11,11 +11,13 @@ def connect_to_server(socket_address, socket_port, socket_password):
     # Receive the server's response
     response = client_socket.recv(1024).decode('utf-8')
     print(f"Server says: {response}")
-    
+    msg = input("Send it a message: ")
+    client_socket.send(msg.encode('utf-8'))
+
     # Close the connection
     client_socket.close()
     
-    print("An error has occurred.")
+    #print("An error has occurred.")
     return False
 
 
@@ -25,6 +27,7 @@ def main():
     port = input("Please enter the port of the socket (local/54321): ")
     passwd = getpass.getpass(prompt="Please enter the socket's password (won't echo): ")
     connect_to_server(addr, port, passwd)
+
 
 
 
